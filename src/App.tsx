@@ -20,9 +20,7 @@ function App() {
   const [cookiePos, setCookiePos] = useState<Position>(defaultCookiePos);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [pause, setPause] = useState<boolean>(false);
-  const [snakeSpeed, setSnakeSpeed] = useState<number | null>(
-    defaultSnakeSpeed
-  );
+  const [snakeSpeed, setSnakeSpeed] = useState<number | null>(null);
   const [score, setScore] = useState(0);
 
   const startGame = () => {
@@ -45,13 +43,13 @@ function App() {
     let isOver = handleCollision(newSnake);
     let newScore;
 
-    moveSnake(newSnake, snakeDir);
-    newScore = eatCookie(newSnake, newCookiePos, score);
-    setScore(newScore);
     if (isOver) {
       setGameOver(true);
       return;
     }
+    moveSnake(newSnake, snakeDir);
+    newScore = eatCookie(newSnake, newCookiePos, score);
+    setScore(newScore);
     setCookiePos(newCookiePos);
     setSnakeBody(newSnake);
   }, snakeSpeed);
@@ -63,6 +61,10 @@ function App() {
 
   const appRef = useRef(null);
   useKeyPressDetector(appRef, snakeDir, setSnakeDir);
+
+  useEffect(() => {
+    startGame();
+  }, []);
 
   return (
     <div ref={appRef} className="rootApp">
