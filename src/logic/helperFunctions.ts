@@ -68,3 +68,18 @@ export const handleCollision = (snake: Snake) => {
   }
   return false;
 };
+
+export const checkDir = (prevDir: string, dir: string) => {
+  if (prevDir === 'up' && dir === 'down') {
+    return 'up';
+  }
+  if (prevDir === 'right' && dir === 'left') {
+    return 'right';
+  }
+  if (prevDir === 'down' && dir === 'up') {
+    return 'down';
+  }
+  if (prevDir === 'left' && dir === 'right') {
+    return 'left';
+  }
+}

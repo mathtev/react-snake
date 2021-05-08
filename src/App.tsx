@@ -6,7 +6,7 @@ import {
   defaultSnakeDir,
   defaultSnakeSpeed,
 } from './logic/defaultValues';
-import { moveSnake, eatCookie, handleCollision } from './logic/helperFunctions';
+import { moveSnake, eatCookie, handleCollision, checkDir } from './logic/helperFunctions';
 import useInterval from './logic/hooks/useInterval';
 import { useKeyPressDetector } from './logic/hooks/useKeyPressDetector';
 import { Snake } from './types/Snake';
@@ -17,6 +17,7 @@ import './App.css';
 function App() {
   const [snakeBody, setSnakeBody] = useState<Snake>(defaultSnake);
   const [snakeDir, setSnakeDir] = useState<string>(defaultSnakeDir);
+  const [prevSnakeDir, setPrevSnakeDir] = useState<string>(defaultSnakeDir);
   const [cookiePos, setCookiePos] = useState<Position>(defaultCookiePos);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [pause, setPause] = useState<boolean>(false);
@@ -43,6 +44,13 @@ function App() {
     let isOver = handleCollision(newSnake);
     let newScore;
 
+    const invalidDir = checkDir(prevSnakeDir, snakeDir);
+
+    if(invalidDir) {
+      setSnakeDir(invalidDir);
+      return;
+    }
+
     if (isOver) {
       setGameOver(true);
       return;
@@ -52,6 +60,7 @@ function App() {
     setScore(newScore);
     setCookiePos(newCookiePos);
     setSnakeBody(newSnake);
+    setPrevSnakeDir(snakeDir);
   }, snakeSpeed);
 
   useEffect(() => {
