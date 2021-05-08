@@ -27,6 +27,7 @@ function App() {
   const startGame = () => {
     setSnakeBody(defaultSnake);
     setSnakeDir(defaultSnakeDir);
+    setPrevSnakeDir(defaultSnakeDir);
     setCookiePos(defaultCookiePos);
     setScore(0);
     setGameOver(false);
