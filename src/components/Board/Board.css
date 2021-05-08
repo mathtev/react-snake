@@ -1,0 +1,18 @@
+.board {
+  width: 80vh;
+  height: 80vh;
+  margin: auto;
+  background-color: #a9c9fb;
+  border: 2px solid black;
+
+  display: grid;
+  grid-template-rows: repeat(30, 1fr);
+  grid-template-columns: repeat(30, 1fr);
+}
+
+.snakeCell {
+  background-color: azure;
+  border: rgb(189, 189, 189) 1px solid;
+  grid-row-start: 10;
+  grid-column-start: 10;
+}
