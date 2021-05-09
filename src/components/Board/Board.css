@@ -1,8 +1,9 @@
 .board {
-  width: 80vh;
-  height: 80vh;
+  width: 500px;
+  height: 500px;
   margin: auto;
-  background-color: #a9c9fb;
+  margin-top: 2rem;
+  background-color: #cdf0ff;
   border: 2px solid black;
 
   display: grid;
@@ -11,8 +12,8 @@
 }
 
 .snakeCell {
-  background-color: azure;
-  border: rgb(189, 189, 189) 1px solid;
+  background-color: rgb(96, 201, 127);
+  border: 1px solid green;
   grid-row-start: 10;
   grid-column-start: 10;
 }

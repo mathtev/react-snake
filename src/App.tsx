@@ -25,6 +25,7 @@ function App() {
   const [score, setScore] = useState(0);
 
   const startGame = () => {
+    setGameOver(false);
     setSnakeBody(defaultSnake);
     setSnakeDir(defaultSnakeDir);
     setPrevSnakeDir(defaultSnakeDir);
@@ -82,7 +83,7 @@ function App() {
         <button className="appBtn" onClick={startGame}>
           Restart
         </button>
-        <button className="appBtn" onClick={togglePause}>
+        <button className={'appBtn ' + (pause ? 'pauseActive' : '')} onClick={togglePause}>
           Pause ||
         </button>
         <h2>Your Score: {score}</h2>
